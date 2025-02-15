@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-import Image from "next/image";
 import { useRef } from "react";
 
 type BlogList = {
@@ -43,8 +42,8 @@ export default function Page({ params }: { params: Promise<{ productId: string }
       const data = await response.json();
       setBlog(data.blog);
       console.log(data.blog);
-    } catch (err: any) {
-      console.error(err.message);
+    } catch (err: unknown) {
+      console.error(err);
     } finally {
       setIsLoading(false);
     }
@@ -74,8 +73,8 @@ export default function Page({ params }: { params: Promise<{ productId: string }
       if (airef.current) {
         airef.current.scrollIntoView({ behavior: "smooth" });
       }
-    } catch (error: any) {
-      console.error("Error analyzing blog:", error.message);
+    } catch (error: unknown) {
+      console.error("Error analyzing blog:", error);
   
       setSummary("Failed to analyze the blog. Please try again.");
     } finally {

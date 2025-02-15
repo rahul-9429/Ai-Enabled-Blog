@@ -10,7 +10,7 @@ type blogList ={
   category: string;
   img:string;
 }
-const Blogitem: React.FC<blogList> = ({_id, title, description, category, img}) => {
+const Blogitem: React.FC<blogList> = ({_id, title, description, category}) => {
   // console.log(_id , "from blogitem");
   return (
     <Link href={`blog/${_id}`}>
@@ -25,7 +25,7 @@ const Blogitem: React.FC<blogList> = ({_id, title, description, category, img}) 
               {title}
             </h5>
             {/* description */}
-            <p className='tracking-tight mb-3 text-sm text-gray-700' 
+            <p className='tracking-tight mb-3 text-sm text-gray-700 line-clamp-2' 
             dangerouslySetInnerHTML={{__html:description.slice(0,80)}}>
             </p>
             <div className='inline-flex w-full items-centerpy-2 font-semibold  text-center'>

@@ -99,9 +99,9 @@ const defaultData: BlogData = {
             } else {
                 toast.error(response.data.error || 'Something went wrong');
             }
-        } catch (error: any) {
-            console.error('Axios error:', error.response?.data || error.message);
-            toast.error(error.response?.data?.message || 'Server Error');
+        } catch (error: unknown) {
+            console.error('Axios error:', error);
+            toast.error(error as string);
         }
     };
 

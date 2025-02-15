@@ -1,9 +1,10 @@
     import { NextResponse } from "next/server";
-    import {config, configDotenv} from "dotenv"
+    import {config} from "dotenv"
     import { GoogleGenerativeAI } from "@google/generative-ai";
  
     export async function POST(request: Request){
-        const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "AIzaSyA4__0sQy_3NvCpiQCBb18uv7H8jjx_Q70");
+        config();
+        const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY as string);
         const formdata = await request.formData();
         const description = formdata.get("description") as string;
         const author = formdata.get("author") as string;
@@ -16,8 +17,8 @@
         // console.log(summarizedText);
         return NextResponse.json({summarizedText: summarizedText});
         
-        } catch (error: any) {
-            console.error("Error :", error.message);
+        } catch (error: unknown) {
+            console.error("Error :", error);
             return NextResponse.json({ msg: "Error" }, { status: 500 });
         }
     }

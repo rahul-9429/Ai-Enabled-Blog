@@ -5,7 +5,7 @@ import Arrow from '../../../assets/Arrow.png'
 import Link from 'next/link'
 import { useState } from 'react'
 
-const header = () => {
+const Header = () => {
   const [mail, setMail] = useState<string>("");
 
   const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,4 +72,4 @@ const header = () => {
   )
 }
 
-export default header
+export default Header

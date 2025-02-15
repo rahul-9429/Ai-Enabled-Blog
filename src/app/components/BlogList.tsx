@@ -27,14 +27,14 @@ const BlogList =  () => {
       console.log(blogList);
       // console.log(response.data.blogs._id , "id from bloglist");
       
-    } catch (error:any) {
-      console.error("Error fetching blogs:", error.message);
+    } catch (error:unknown) {
+      console.error("Error fetching blogs:", error);
     }
   }
   
   useEffect(()=>{
     fecthBlogs();
-  },[])
+  },[blogList])
 
 
   return (

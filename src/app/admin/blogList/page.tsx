@@ -14,7 +14,7 @@ type blogList = {
   draft:boolean;
 }
 
-const page = () => {
+const Page = () => {
   const [blogList, setBlogList] = useState<blogList[]>([]);
   
   const fecthBlogs = async () =>{
@@ -22,8 +22,8 @@ const page = () => {
       const response = await axios.get("/api/blogs")
       setBlogList(response.data.blogs || []);
 
-    } catch (error:any) {
-      console.error("Error fetching blogs:", error.message);
+    } catch (error:unknown) {
+      console.error("Error fetching blogs:", error);
     }
   }
   
@@ -35,7 +35,7 @@ const page = () => {
     alert("Edit disabled for now");
   }
 
-  const handleDelete = (id: String) => {
+  const handleDelete = (id:string) => {
     return async () => {
       if (!confirm("Are you sure you want to delete this blog?")) {
         return;
@@ -44,8 +44,8 @@ const page = () => {
         await axios.delete(`/api/blogs?id=${id}`);
         toast.success("Blog deleted successfully");
         fecthBlogs(); 
-      } catch (error: any) {
-        console.error("Error deleting blog:", error.message);
+      } catch (error: unknown) {
+        console.error("Error deleting blog:", error);
         toast.error("Failed to delete the blog");
       }
     };
@@ -96,4 +96,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

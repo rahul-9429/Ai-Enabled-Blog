@@ -37,8 +37,8 @@ export async function GET(request: Request) {
       const blogList = await collection.find().toArray();
       return NextResponse.json({ blogs: blogList });
     }
-  } catch (error: any) {
-    console.error("Error fetching blogs:", error.message);
+  } catch (error: unknown) {
+    console.error("Error fetching blogs:", error);
     return NextResponse.json(
       { msg: "Error fetching blogs" },
       { status: 500 }
@@ -56,18 +56,18 @@ export async function DELETE(request: Request){
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }
     return NextResponse.json({ success: true, message: "Blog deleted successfully" });
-  } catch (error: any) {
-    return NextResponse.json({error: "Internal Server Error"}, {status: 500});
+  } catch (error: unknown) {
+    return NextResponse.json({error: error}, {status: 500});
   }
 }
 
-export async function PUT(request: Request){
-  const {searchParams} = new URL(request.url);
-  const id = searchParams.get("id");
+export async function PUT(){
+  // const {searchParams} = new URL(request.url);
+  // const id = searchParams.get("id");
   try {
     await loadDb();
     
-  } catch (error: any) {
+  } catch (error: unknown) {
     return NextResponse.json({error: error}, {status: 500});
     
   }
@@ -78,10 +78,10 @@ export async function POST(request: Request) {
         await loadDb(); 
         // console.log("req is",request);
         const formData = await request.formData();
-        const timeStamp = Date.now();
+        // const timeStamp = Date.now();
         console.log(request.body);
         const image = formData.get("image") as File | null;
-        const authorImage = formData.get("authorImg") as File | null; 
+        // const authorImage = formData.get("authorImg") as File | null; 
         const drafts = formData.get("draft") === "true";
         if (!image) {
             return NextResponse.json({ error: "No image or author image uploaded" }, { status: 400 });
@@ -105,8 +105,8 @@ export async function POST(request: Request) {
         return NextResponse.json({ success: true, message: "Blog created successfully" });
         }
 
-    } catch (error: any) {
-        console.error("Error handling blog creation:", error.message);
+    } catch (error: unknown) {
+        console.error("Error handling blog creation:", error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 
-const page = () => {
+const Page = () => {
     const [actions, setActions] = React.useState('signin')
   return (
     <div className=' py-36   flex items-center h-screen flex-col'> 
@@ -45,4 +45,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

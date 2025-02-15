@@ -13,7 +13,7 @@ const loadDb = async () => {
     }
 };
 
-export async function GET(request: Request) {
+export async function GET() {
     try {
         await client.connect();
         const database = client.db("blog-app");
@@ -22,8 +22,8 @@ export async function GET(request: Request) {
         const users = await collection.find().toArray();
         console.log(users);
 return NextResponse.json({subscribers:users});}
-catch (error:any) {
-        console.error("Error fetching emails from db:", error.message);
+catch (error:unknown) {
+        console.error("Error fetching emails from db:", error);
         return NextResponse.json({ msg: "Error fetching emails from db" }, { status: 500 });
     }
 }
@@ -50,8 +50,8 @@ export async function POST(request: Request){
        
 
 
-    } catch (error: any) {
-        console.error("Error saving email to db:", error.message);
+    } catch (error: unknown) {
+        console.error("Error saving email to db:", error);
         return NextResponse.json({msg:"Error saving email to db"}, {status: 500});
         
     }

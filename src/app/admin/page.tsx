@@ -22,8 +22,8 @@ const Page = () => {
       const response = await fetch("http://localhost:3000/api/blogs");
       const data = await response.json();
       setBlogList(data.blogs || []);
-    } catch (error: any) {
-      console.error("Error fetching blogs:", error.message);
+    } catch (error: unknown) {
+      console.error("Error fetching blogs:", error);
     }
   };
 
@@ -31,19 +31,19 @@ const Page = () => {
     fetchBlogs();
   }, []);
 
-  const handleEdit = (
-    id: string,
-    title: string,
-    description: string,
-    category: string,
-    draft: boolean
-  ) => {
-    window.location.href = `/admin/addProduct?id=${id}&title=${encodeURIComponent(
-      title
-    )}&description=${encodeURIComponent(description)}&category=${encodeURIComponent(
-      category
-    )}&draft=${draft}`;
-  };
+  // const handleEdit = (
+  //   id: string,
+  //   title: string,
+  //   description: string,
+  //   category: string,
+  //   draft: boolean
+  // ) => {
+  //   window.location.href = `/admin/addProduct?id=${id}&title=${encodeURIComponent(
+  //     title
+  //   )}&description=${encodeURIComponent(description)}&category=${encodeURIComponent(
+  //     category
+  //   )}&draft=${draft}`;
+  // };
 
   const handleDelete = (id: string) => {
     return async () => {
@@ -54,8 +54,8 @@ const Page = () => {
         await axios.delete(`/api/blogs?id=${id}`);
         toast.success("Blog deleted successfully");
         fetchBlogs(); // Refresh the blog list
-      } catch (error: any) {
-        console.error("Error deleting blog:", error.message);
+      } catch (error: unknown) {
+        console.error("Error deleting blog:", error);
         toast.error("Failed to delete the blog");
       }
     };

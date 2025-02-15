@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: Request){
+export async function GET(){
     return NextResponse.json({message:"At drafts route"});
 }
 
-export async function POST(request: Request){
+export async function POST(){
     return NextResponse.json({message:"At drafts route"});
 }
