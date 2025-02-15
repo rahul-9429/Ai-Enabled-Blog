@@ -7,11 +7,12 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 const page = () => {
     const [actions, setActions] = React.useState('signin')
   return (
-    <div className='py-36   flex items-center h-screen flex-col'> 
+    <div className=' py-36   flex items-center h-screen flex-col'> 
         <Link href='/'>
         <h1 className='font-bold text-3xl pb-10'>Blog.</h1>
         </Link>
-        <div className=' border  border-black p-9 shadow-[-7px_7px_0_#000000]'>
+        <div className=' border  border-black pt-6 sm:p-9 
+        shadow-[-7px_7px_0_#000000]'>
         <div className='w-full flex  justify-around'>
             <button 
             className={`${actions === 'signin' ? 'bg-black p-2 px-5 text-white rounded-sm' : 'bg-white text-black'}`}
