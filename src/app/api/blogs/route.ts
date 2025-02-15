@@ -3,7 +3,7 @@ import BlogModel from "../../../../lib/models/BlogModel";
 import ConnectDb from "../../../../lib/config/db";
 import { MongoClient, ObjectId } from "mongodb";
 
-const client = new MongoClient(process.env.MONGODB_CONNECTION_URL as string);
+const client = new MongoClient(process.env.NEXT_PUBLIC_MONGODB_CONNECTION_URL as string);
 const loadDb = async () => {
     try {
         await ConnectDb();
@@ -16,7 +16,7 @@ const loadDb = async () => {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
-  console.log("id is",id);
+  // console.log("id is",id);
 
   try {
     await client.connect();

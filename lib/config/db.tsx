@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 
 const ConnectDb = async () => {
-    const mongoUri = process.env.MONGODB_CONNECTION_URL || "";
+    const mongoUri = process.env.NEXT_PUBLIC_MONGODB_CONNECTION_URL || "";
 
     if (!mongoUri) {
        console.log("MONGODB_CONNECTION_URL is not defined in environment variables");

@@ -3,7 +3,7 @@ import ConnectDb from "../../../../lib/config/db";
 import EmailModel from "../../../../lib/models/EmailModel"
 import { MongoClient } from "mongodb";
 
-const client = new MongoClient(process.env.MONGODB_CONNECTION_URL as string);
+const client = new MongoClient(process.env.NEXT_PUBLIC_MONGODB_CONNECTION_URL as string);
 const loadDb = async () => {
     try {
         await ConnectDb();

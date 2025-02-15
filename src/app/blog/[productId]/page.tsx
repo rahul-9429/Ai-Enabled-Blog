@@ -86,9 +86,9 @@ export default function Page({ params }: { params: Promise<{ productId: string }
   return (<>
   
   {isaiLoading && (
-  <div className="fixed inset-0 bg-black/10 backdrop-blur-sm z-40 flex items-center justify-center shadow-[10px_10px_10px_pink]">
+  <div className="fixed inset-0 bg-black/90 backdrop-blur-lg z-40 flex items-center justify-center ">
     <div className="text-xl font-bold z-50">
-      <span className="text-3xl font-semibold text-black font-mono">
+      <span className="text-3xl font-semibold text-white font-mono">
       Analyzing with AI...
       </span>
       </div>
@@ -108,7 +108,9 @@ export default function Page({ params }: { params: Promise<{ productId: string }
 
       <div className="mt-6">
         {isLoading ? (
-          <p>Loading...</p>
+          <p 
+          className="fixed inset-0 bg-black/90 backdrop-blur-lg z-40 flex items-center justify-center text-3xl font-semibold text-white font-mono transition-transform"
+          >Loading...</p>
         ) : blog ? (
           <div>
             {/* <Image
@@ -120,14 +122,14 @@ export default function Page({ params }: { params: Promise<{ productId: string }
       
       <div className="overflow-hidden flex flex-col justify-center">
       <h1 className="text-3xl text-center font-bold capitalize mb-4">{blog.title}</h1>
-      <div className="flex justify-center m-auto align-center  border-2 border-gray-300 rounded-md">
+      <div className="flex justify-center m-auto align-center  ">
       <img src={blog.image} alt="Base64 Example" loading="lazy"
       className=""
       />
       </div>
     
       </div>
-      <div className="flex items-center font-xl justify-between px-10 ">
+      <div className="flex items-center text-lg justify-between px-10 ">
       <p className="mt-4 font-medium capitalize ">Category: {blog.category}</p>
       <p className="mt-4 font-medium capitalize ">{blog.author}</p>
       <button

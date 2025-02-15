@@ -4,7 +4,8 @@
  
     export async function POST(request: Request){
         config();
-        const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY as string);
+        console.log(process.env.NEXT_PUBLIC_GOOGLE_API_KEY );
+        const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY as string);
         const formdata = await request.formData();
         const description = formdata.get("description") as string;
         const author = formdata.get("author") as string;
