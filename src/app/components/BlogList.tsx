@@ -22,7 +22,7 @@ const BlogList =  () => {
   
   const fecthBlogs = async () =>{
     try {
-      const response = await axios.get("http://localhost:3000/api/blogs")
+      const response = await axios.get("/api/blogs")
       setBlogList(response.data.blogs || []);
       console.log(blogList);
       // console.log(response.data.blogs._id , "id from bloglist");
