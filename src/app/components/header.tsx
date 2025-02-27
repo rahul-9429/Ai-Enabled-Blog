@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Arrow from '../../../assets/Arrow.png'
 import Link from 'next/link'
 import { useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify';
 
 const Header = () => {
   const [mail, setMail] = useState<string>("");
@@ -32,9 +33,11 @@ const Header = () => {
       console.log("Subscription successful:", result);
 
       setMail("");
+      // toast.success("You have successfully subscribed!");
       alert("You have successfully subscribed!");
     } catch (error) {
       console.error("Error submitting form:", error);
+      // toast.error("An error occurred. Please try again.");
       alert("An error occurred. Please try again.");
     }}
   return (
@@ -51,7 +54,9 @@ const Header = () => {
           <div className='text-center my-8'>
             <h1 className='text-2xl sm:text-4xl font-medium'>Latest Blogs</h1>
            
-            <p className='pt-10'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur nihil magni adipisci. Optio dolorum minima sint eaque, dolores mollitia neque vitae quasi qui asperiores suscipit ipsa, voluptate provident dolor dolorem.</p>
+            <p className='pt-10'>
+            Explore our blog collection featuring diverse topics like Technology, Startups, and Lifestyle. Stay informed, inspired, and ahead with articles tailored just for you. Dive in and discover your next favorite read!
+              </p>
            
             <form className='flex justify-between max-w-[500px] scale-75 sm:scale-100 mx-auto mt-10 border shadow-[-7px_7px_0_#000000]  border-black' action=""
             onSubmit={handleSubmit}

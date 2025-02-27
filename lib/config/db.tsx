@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const ConnectDb = async () => {
     const mongoUri = process.env.NEXT_PUBLIC_MONGODB_CONNECTION_URL || "";
 

@@ -158,7 +158,9 @@ export default function Page({ params }: { params: Promise<{ productId: string }
            
           </div>
         ) : (
-          <p>Blog not found.</p>
+          <p 
+          className="w-full m-auto py-20 flex items-center justify-center text-3xl font-semibold text-black font-mono"
+          >Blog not found.</p>
         )}
       </div>
     </div>
