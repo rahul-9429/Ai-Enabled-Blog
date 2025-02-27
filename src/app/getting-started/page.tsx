@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import axios from 'axios';
-import { toast } from 'react-toastify';
 const Page = () => {
     const [actions, setActions] = React.useState('signin')
     const [message, setMessage] = React.useState('')
@@ -24,12 +23,12 @@ const Page = () => {
             const res = await axios.get(`/auth/getting-started?mail=${user.mail}&pass=${user.pass}`)
             setMessage(res.data.message);
             if(res.data.redirect){
+
                 window.location.href = res.data.redirect;
 
             }
             console.log(res.data.message);
         } catch (error: unknown) {
-            // toast.error((error as Error).message);
             setMessage((error as Error).message);
         }
     }
@@ -42,12 +41,8 @@ try {
         }
     })
     setMessage(res.data.message);
-    if(res.data.redirect){
-        window.location.href = res.data.redirect;
-    }
 } catch (error: unknown) {
-    toast.error((error as Error).message);
-    
+console.log((error as Error).message);    
 }
     }
 

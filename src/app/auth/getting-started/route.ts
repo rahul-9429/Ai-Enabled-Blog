@@ -23,8 +23,16 @@ const isMatch = await bcryptjs.compare(pass, user.password);
 if (!isMatch) {
     return NextResponse.json({ message: "Invalid credentials" }, { status: 401 });
 }
-const token = jwt.sign({ email: mail }, process.env.NEXT_PUBLIC_JWT_SECRET as string, { expiresIn: "30d" });
-return NextResponse.json({ message: "Signin Successful", redirect: "/admin" }, { status: 200 });
+const tokenData = {
+    id: user._id,
+    email: user.email,
+}
+const token = await jwt.sign(tokenData, process.env.NEXT_PUBLIC_JWT_SECRET as string, { expiresIn: "30d" });
+ 
+const response = NextResponse.json({message : "Signin Successful", token: token,redirect: "/admin" }, {status: 200});
+response.cookies.set("token", token, {httpOnly: true});
+return response;
+// return NextResponse.json({ message: "Signin Successful", redirect: "/admin" }, { status: 200 });
 
     } catch (error: unknown) {
         return NextResponse.json({ error: (error as Error).message }, { status: 500 });
@@ -58,9 +66,7 @@ export async function POST(request: Request) {
             password: upass
         }).save();
 
-        const token = jwt.sign({ email: umail }, process.env.NEXT_PUBLIC_JWT_SECRET as string, { expiresIn: "30d" });
-
-        return NextResponse.json({ message: "Signup Successful",redirect: "/admin" }, { status: 201 });
+        return NextResponse.json({ message: "Signup Successful, Signin to continue" }, { status: 201 });
 
     } catch (error: unknown) {
         console.log((error as Error).message);
