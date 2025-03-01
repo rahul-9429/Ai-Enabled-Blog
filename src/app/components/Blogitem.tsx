@@ -1,5 +1,4 @@
 import React from 'react'
-import Sampleimg from '../../../assets/Sampleimg.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
 

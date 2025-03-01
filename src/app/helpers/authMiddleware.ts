@@ -7,11 +7,11 @@ export function authenticate(request: Request){
         return NextResponse.json({ message: "Unauthorized: No token provided" }, { status: 401 });
     }
     try {
-        const decode = jwt.Verify(token, NEXT_PUBLIC_process.env.JWT_SECRET);
+        const decode = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET as string);
         return decode;
         
     } catch (error: unknown) {
-        return NextResponse.json({ message: "Unauthorized: Invalid token" }, { status: 401 });
+        return NextResponse.json({ message: "Unauthorized: Invalid token",error:error }, { status: 401 });
         
     }
 }
